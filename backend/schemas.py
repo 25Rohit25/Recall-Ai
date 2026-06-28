@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import List, Optional, Dict
 from datetime import datetime
 import uuid
@@ -14,6 +14,7 @@ class MeetingListResponse(BaseModel):
     health_score: Optional[int]
 
 class IntelligenceSchema(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
     overview: str
     decisions: List[str]
     risks: List[str]
@@ -22,6 +23,7 @@ class IntelligenceSchema(BaseModel):
     health_score: int
 
 class TranscriptSegmentSchema(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
     id: int
     speaker: str
     start_time: float
@@ -29,12 +31,14 @@ class TranscriptSegmentSchema(BaseModel):
     text: str
 
 class ActionItemSchema(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
     id: int
     task: str
     status: str
     owner: str
 
 class MeetingDetailResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
     id: uuid.UUID
     title: str
     date: datetime

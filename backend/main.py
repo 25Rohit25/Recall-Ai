@@ -1,6 +1,7 @@
 import uuid
 import asyncio
 from fastapi import FastAPI, BackgroundTasks, UploadFile, File, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Dict, Any, Optional
 
@@ -10,6 +11,15 @@ app = FastAPI(
     title="FireNotes AI API",
     description="Next-generation Meeting Intelligence Platform Backend",
     version="1.1.0"
+)
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Include the newly defined routers
