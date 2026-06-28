@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import { CommandPalette } from "@/components/CommandPalette";
+import { FirefliesNavbar as GlobalNavbar } from "@/components/GlobalNavbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,9 +19,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${inter.className} bg-slate-950 text-slate-50 antialiased`} suppressHydrationWarning>
+      <body className={`${inter.className} bg-slate-950 text-slate-50 antialiased flex flex-col h-screen overflow-hidden`} suppressHydrationWarning>
         <Providers>
-          {children}
+          <div className="flex-shrink-0 z-50 relative">
+            <GlobalNavbar />
+          </div>
+          <div className="flex-1 overflow-y-auto overflow-x-hidden relative flex flex-col">
+            {children}
+          </div>
           <CommandPalette />
         </Providers>
       </body>

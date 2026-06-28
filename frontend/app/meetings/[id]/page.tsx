@@ -24,7 +24,7 @@ export default function MeetingWorkspace({ params }: { params: Promise<{ id: str
 
   if (isLoading) {
     return (
-      <div className="flex h-screen w-full items-center justify-center bg-[var(--background)] text-slate-400">
+      <div className="flex h-full w-full items-center justify-center bg-[var(--background)] text-slate-400">
         <div className="animate-pulse flex flex-col items-center gap-4">
           <div className="w-8 h-8 rounded-full border-2 border-[var(--ff-purple)] border-t-transparent animate-spin" />
           <p className="text-sm font-medium tracking-wide">Loading workspace...</p>
@@ -35,7 +35,7 @@ export default function MeetingWorkspace({ params }: { params: Promise<{ id: str
 
   if (isError || !meeting) {
     return (
-      <div className="flex h-screen w-full items-center justify-center bg-[var(--background)] text-slate-400">
+      <div className="flex h-full w-full items-center justify-center bg-[var(--background)] text-slate-400">
         Error loading meeting data.
       </div>
     );
@@ -46,7 +46,7 @@ export default function MeetingWorkspace({ params }: { params: Promise<{ id: str
   });
 
   return (
-    <div className="grid grid-cols-12 h-screen w-full bg-[var(--background)] text-slate-200 overflow-hidden font-sans selection:bg-[var(--ff-purple)]">
+    <div className="grid grid-cols-12 h-full w-full bg-[var(--background)] text-slate-200 overflow-hidden font-sans selection:bg-[var(--ff-purple)]">
       {/* Sidebar - 2 Cols */}
       <div className="col-span-2 overflow-y-auto border-r border-slate-800 bg-[var(--ff-sidebar)]">
         <LeftSidebar />

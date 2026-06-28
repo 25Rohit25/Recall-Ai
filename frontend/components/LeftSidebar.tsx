@@ -30,10 +30,11 @@ export function LeftSidebar() {
       
       <div className="flex-1 overflow-y-auto py-4">
         <div className="px-3 space-y-1">
-          <NavItem href="/dashboard" icon={<Home size={18} />} label="Home" active={pathname === '/dashboard'} />
+          <NavItem href="/" icon={<Home size={18} />} label="Home (Landing Page)" active={pathname === '/'} />
+          <NavItem href="/dashboard" icon={<Briefcase size={18} />} label="Dashboard" active={pathname === '/dashboard'} />
           <NavItem href="/meetings/upcoming" icon={<Calendar size={18} />} label="Upcoming Meetings" active={pathname === '/meetings/upcoming'} />
           <NavItem href="/compare" icon={<Scale size={18} />} label="Compare Engine" active={pathname === '/compare'} />
-          <NavItem href="/workspaces" icon={<Briefcase size={18} />} label="Workspaces" active={pathname === '/workspaces'} />
+          <NavItem href="/workspaces" icon={<FolderClosed size={18} />} label="Workspaces" active={pathname === '/workspaces'} />
         </div>
         
         <div className="mt-8 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">

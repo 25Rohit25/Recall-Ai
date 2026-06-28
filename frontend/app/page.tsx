@@ -72,8 +72,8 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#020617] text-white overflow-x-hidden">
-      <FirefliesNavbar />
+    <div className="min-h-full bg-[#020617] text-white overflow-x-hidden">
+
 
       {/* Hero Section */}
       <section className="relative pt-40 pb-24 overflow-hidden">

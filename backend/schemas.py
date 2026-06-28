@@ -60,7 +60,7 @@ class MeetingDetailResponse(BaseModel):
     status: MeetingStatus
     intelligence: Optional[IntelligenceSchema]
     action_items: List[ActionItemSchema]
-    transcript_segments: List[TranscriptSegmentSchema]
+    segments: List[TranscriptSegmentSchema]
     decisions: List[DecisionSchema] = []
     entities: List[KnowledgeEntitySchema] = []
 

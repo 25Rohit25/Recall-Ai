@@ -26,7 +26,7 @@ export default function Dashboard() {
   const handleUploadClick = () => setIsModalOpen(true);
 
   return (
-    <div className="flex h-screen w-full bg-[var(--background)] text-slate-200 overflow-hidden font-sans selection:bg-[var(--ff-purple)]">
+    <div className="flex h-full w-full bg-[var(--background)] text-slate-200 overflow-hidden font-sans selection:bg-[var(--ff-purple)]">
       <div className="w-64 flex-shrink-0 overflow-y-auto border-r border-slate-800 bg-[var(--ff-sidebar)]">
         <LeftSidebar />
       </div>

@@ -115,7 +115,7 @@ export function FirefliesNavbar() {
   const close = () => setOpenDropdown(null);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50">
+    <header className="sticky top-0 left-0 w-full z-50">
       {/* Announcement Strip */}
       <div className="bg-gradient-to-r from-purple-600 to-pink-600 py-2.5 text-center text-sm text-white font-medium">
         <span className="inline-flex items-center gap-2">

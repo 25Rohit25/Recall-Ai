@@ -10,7 +10,7 @@ export default function AppsPage() {
   ];
 
   return (
-    <div className="flex h-screen bg-[#020617] text-slate-200 font-sans selection:bg-purple-500/30">
+    <div className="flex h-full bg-[#020617] text-slate-200 font-sans selection:bg-purple-500/30">
       <div className="w-64 flex-shrink-0">
         <LeftSidebar />
       </div>
