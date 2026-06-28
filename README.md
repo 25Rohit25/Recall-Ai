@@ -1,67 +1,115 @@
-# 🔥 FireNotes AI 
+# FireNotes AI 🚀
 
-> The Premium, Next-Generation Meeting Intelligence Platform.
+An Enterprise Organizational Memory Platform that transforms fragmented meeting conversations into a searchable, relational, and intelligent company-wide Knowledge Graph.
 
-FireNotes AI transforms mundane meeting recordings into highly interactive, synchronized workspaces powered by an AI-driven Intelligence Engine. Experience seamless media playback bound directly to speaker transcripts, intelligent action item extraction, and instantaneous knowledge search—all wrapped in an elite, enterprise-grade dark mode aesthetic.
-
-![FireNotes AI Workspace](https://via.placeholder.com/1200x600/020617/8B5CF6?text=FireNotes+AI+Workspace)
+Built with **Next.js (App Router)**, **Tailwind CSS v4**, **Framer Motion**, **FastAPI**, and **SQLite**.
 
 ---
 
-## ✨ Elite Features
+## 📖 Project Overview
 
-- **Bidirectional Media Sync:** Click any transcript segment to instantly seek the media player to that exact timestamp. The transcript automatically scrolls and highlights the active speaker as the media plays.
-- **Unified Intelligence Schema:** A normalized, JSON1-powered SQLite database that natively models transcripts, key decisions, risks, and health scores to provide unparalleled query speed and structure.
-- **Global Command Palette:** Instantly access any feature using `Ctrl+K`. Search your meeting history, jump to action items, or invoke the AI Copilot without touching your mouse.
-- **AI Copilot & Intelligence Panel:** An interactive sidebar offering immediate executive summaries, health scores, and an interactive prompt interface to interrogate your meeting data.
-- **One-Click Markdown Export:** Seamlessly compile the entire meeting—including checked tasks, health scores, and the timestamped transcript—into a structured Markdown document.
-- **Enterprise Dark Mode:** "Style Decoupled" aesthetic mimicking the top-tier SaaS DNA (slate gradients, glassmorphism, fluid typography, and premium scrollbars).
+Modern enterprises lose thousands of hours a year trying to track down decisions, tasks, and context from past meetings. FireNotes AI is a proactive Organizational Memory platform that:
+
+1. **Ingests** meeting transcripts (text, audio, or real-time simulation).
+2. **Analyzes** conversations using AI to extract Tasks, Decisions, Risks, and Global Knowledge Entities.
+3. **Connects** these entities into a Cross-Meeting Knowledge Graph.
+4. **Empowers** teams with proactive recommendations, automated workflows (Slack/Email/Jira exports), and detailed analytics.
+
+## 🏗️ Architecture
+
+```mermaid
+graph TD
+    %% Frontend Layer
+    subgraph Frontend [Next.js Client UI]
+        Dashboard[Dashboard & Copilot]
+        Workspaces[Meeting Workspaces]
+        Compare[Meeting Comparison Engine]
+        Profile[Team Profiles]
+    end
+
+    %% Backend Layer
+    subgraph Backend [FastAPI Service]
+        API_Meetings[Meetings Router]
+        API_Search[Search Router]
+        API_Knowledge[Knowledge Router]
+        API_Analytics[Analytics Router]
+        API_Workflows[Workflows Router]
+    end
+
+    %% Database Layer
+    subgraph Database [SQLite via SQLModel]
+        DB[(Relational DB + JSON1)]
+    end
+
+    %% Connections
+    Frontend <--> |REST API / JSON| Backend
+    Backend <--> |SQL Alchemy ORM| Database
+```
+
+## ✨ The 25-Feature Matrix
+
+| Area | Feature | Status |
+| :--- | :--- | :---: |
+| **Core** | Multi-tenant Meeting Workspaces | ✅ |
+| **Core** | Real-time Transcript Processing | ✅ |
+| **Core** | Multi-speaker diarization UI | ✅ |
+| **Core** | AI Summary Generation | ✅ |
+| **Core** | Sentiment Analysis (Positive, Neutral, Negative) | ✅ |
+| **Intelligence** | Automated Action Item Extraction | ✅ |
+| **Intelligence** | Risk & Blocker Flagging | ✅ |
+| **Intelligence** | Thematic Topic Tagging | ✅ |
+| **Intelligence** | Health Score Calculation | ✅ |
+| **Intelligence** | Decision Log Extraction | ✅ |
+| **Knowledge Graph**| Global Knowledge Entity Normalization | ✅ |
+| **Knowledge Graph**| Cross-Meeting Entity Timeline | ✅ |
+| **Knowledge Graph**| Omni-Search Bar (Fuzzy matching) | ✅ |
+| **Knowledge Graph**| Entity "Mentioned In" Linking | ✅ |
+| **Knowledge Graph**| Decision Lifecycle Tracking | ✅ |
+| **Analytics** | Individual Team Member Profiles | ✅ |
+| **Analytics** | Global Tasks Completed Percentage | ✅ |
+| **Analytics** | Average Talk Time Metrics | ✅ |
+| **Analytics** | Open Decisions Tracking | ✅ |
+| **Analytics** | Meeting Comparison Engine (Mathematical Deltas) | ✅ |
+| **Proactive AI** | AI Workflow Generator (Slack, Email, Jira exports) | ✅ |
+| **Proactive AI** | Floating Proactive Alerts Toast | ✅ |
+| **Proactive AI** | Smart "Next Steps" Recommendations | ✅ |
+| **UI/UX** | Dark Mode Glassmorphism Theme | ✅ |
+| **UI/UX** | Fluid Framer Motion Micro-animations | ✅ |
 
 ---
 
-## 🏗️ Architecture Overview
+## 🚀 Deployment Guide (Production)
 
-FireNotes AI is built on a highly decoupled, cloud-native architecture optimized for zero N+1 queries and blazing-fast edge rendering.
-
-### 1. The Backend (FastAPI + SQLModel)
-- **Engine:** Python 3.11 with FastAPI.
-- **Database:** SQLite leveraging the `JSON1` extension for highly optimized array modeling (Transcript Segments & Action Items) without the overhead of massive junction tables.
-- **Data Flow:** Fully asynchronous SQLAlchemy `async_session` utilizing `selectinload` to eagerly fetch multi-relational intelligence schemas in a single trip.
-- **Validation:** Strict Pydantic v2 parsing guarantees type safety between the ORM and the JSON API.
-
-### 2. The Frontend (Next.js + Zustand)
-- **Framework:** Next.js 15 App Router utilizing Tailwind CSS v4.
-- **State Management:** Zustand manages the high-frequency UI mutations (like `currentTime` for video sync) with O(1) performance overhead, completely decoupled from React context waterfalls.
-- **Data Fetching:** TanStack Query (React Query v5) caches the REST API payload for snappy, optimistic UI rendering.
-- **Containerization:** Built utilizing Next.js `standalone` output, drastically reducing the Docker image footprint.
-
----
-
-## 🚀 Getting Started
-
-Deploying FireNotes AI locally is fully containerized and takes seconds.
+This project is fully containerized and orchestrated via Docker Compose.
 
 ### Prerequisites
 - Docker & Docker Compose installed.
 
-### Spin up the Application
-
-1. Clone the repository and navigate to the root directory.
-2. Build and start the containers in detached mode:
-
+### 1-Click Startup
+From the root directory, simply run:
 ```bash
 docker-compose up -d --build
 ```
 
-3. **Access the Backend API Docs (Swagger UI):**  
-   👉 [http://localhost:8000/docs](http://localhost:8000/docs)
-4. **Access the Frontend Application:**  
-   👉 [http://localhost:3000](http://localhost:3000)
+- **Frontend:** http://localhost:3000
+- **Backend API:** http://localhost:8000
+- **API Docs (Swagger):** http://localhost:8000/docs
 
-### Troubleshooting
-- If no meetings appear, ensure you have run the backend seed script locally or against the mounted volume to populate the `firenotes.db` file with mock meeting intelligence.
-- To shut down the environment, run: `docker-compose down`.
+### Deploying to Cloud Providers (e.g., Render, Railway, AWS)
+1. Ensure your platform supports `docker-compose`.
+2. Connect your GitHub repository to the platform.
+3. The included `docker-compose.yml` configures everything needed:
+   - A private Docker bridge network.
+   - A persistent volume mapped to `backend_data` for the SQLite DB.
+   - An ordered startup sequence (`frontend` waits for `backend`).
 
 ---
 
-*Architected for speed. Designed for intelligence. Engineered for scale.*
+## 🔮 Future Roadmap & Scaling Strategy
+
+As FireNotes AI scales to support millions of meetings, the following architectural upgrades are recommended:
+
+1. **Vector Database Integration:** Replace fuzzy SQL `LIKE` queries with a dedicated Vector DB (Pinecone, Qdrant) for true semantic search across meeting transcripts.
+2. **Asynchronous Task Queues:** Implement Celery & Redis to offload heavy LLM transcription and entity extraction tasks from the main FastAPI thread.
+3. **Redis Caching Layer:** Cache frequent queries (like `/api/v1/analytics/team`) using Redis to reduce database strain on the `TranscriptSegment` tables.
+4. **PostgreSQL Migration:** Transition from SQLite to PostgreSQL for concurrent writes and robust JSONB indexing.

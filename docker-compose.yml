@@ -5,30 +5,35 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    container_name: firenotes-backend
     ports:
       - "8000:8000"
     volumes:
-      - ./backend/firenotes.db:/app/firenotes.db
+      - backend_data:/app/data
     environment:
-      - ENV=production
-    restart: unless-stopped
+      - DATABASE_URL=sqlite:///data/firenotes.db
     networks:
       - firenotes-network
+    restart: unless-stopped
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    container_name: firenotes-frontend
     ports:
       - "3000:3000"
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
     depends_on:
       - backend
-    restart: unless-stopped
     networks:
       - firenotes-network
+    restart: unless-stopped
 
 networks:
   firenotes-network:
     driver: bridge
+
+volumes:
+  backend_data:

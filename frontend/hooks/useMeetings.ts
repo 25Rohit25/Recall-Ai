@@ -5,11 +5,16 @@ export type MeetingStatus = 'processing' | 'completed';
 
 export interface Intelligence {
   overview: string;
-  decisions: string[];
   risks: string[];
   topics: string[];
   deadlines: Array<{ task: string; date: string }>;
   health_score: number;
+}
+
+export interface Decision {
+  id: number;
+  description: string;
+  lifecycle_history: any[];
 }
 
 export interface TranscriptSegment {
@@ -46,6 +51,7 @@ export interface MeetingDetailResponse {
   intelligence: Intelligence | null;
   action_items: ActionItem[];
   transcript_segments: TranscriptSegment[];
+  decisions: Decision[];
 }
 
 // --- API Fetchers ---

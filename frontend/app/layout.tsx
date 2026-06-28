@@ -7,8 +7,8 @@ import { CommandPalette } from "@/components/CommandPalette";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FireNotes AI Workspace",
-  description: "Next-generation Meeting Intelligence Platform",
+  title: "FireNotes AI — #1 AI Meeting Assistant",
+  description: "Transcribe, summarize, search, and analyze all your meetings. AI-powered meeting intelligence for teams.",
 };
 
 export default function RootLayout({
@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.className} bg-slate-950 text-slate-50 antialiased`}>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className={`${inter.className} bg-slate-950 text-slate-50 antialiased`} suppressHydrationWarning>
         <Providers>
           {children}
           <CommandPalette />

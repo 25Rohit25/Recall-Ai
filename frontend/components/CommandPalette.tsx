@@ -7,7 +7,6 @@ import { exportMeetingToMarkdown } from '@/lib/export';
 export function CommandPalette() {
   const isOpen = useUiStore((state) => state.isCommandPaletteOpen);
   const setOpen = useUiStore((state) => state.setCommandPaletteOpen);
-  const setActiveSidebarView = useUiStore((state) => state.setActiveSidebarView);
   const activeMeeting = useUiStore((state) => state.activeMeeting);
   const [query, setQuery] = useState('');
 
@@ -30,7 +29,6 @@ export function CommandPalette() {
 
   const commands = [
     { id: 'search', label: 'Search Meetings', icon: <Search size={18} />, action: () => console.log('Search triggered') },
-    { id: 'tasks', label: 'Jump to Action Items', icon: <ListTodo size={18} />, action: () => setActiveSidebarView('tasks') },
     { id: 'export', label: 'Export Transcript to Markdown', icon: <FileText size={18} />, action: () => {
         if (activeMeeting) {
           exportMeetingToMarkdown(activeMeeting);
@@ -39,7 +37,7 @@ export function CommandPalette() {
         }
       }
     },
-    { id: 'ask', label: 'Ask AI', icon: <MessageSquare size={18} />, action: () => setActiveSidebarView('copilot') },
+    { id: 'ask', label: 'Ask AI Copilot', icon: <MessageSquare size={18} />, action: () => document.getElementById('copilot-input')?.focus() },
     { id: 'theme', label: 'Toggle Theme', icon: <Moon size={18} />, action: () => console.log('Theme toggle triggered') },
   ];
 

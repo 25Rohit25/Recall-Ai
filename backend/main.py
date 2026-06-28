@@ -5,12 +5,21 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Dict, Any, Optional
 
-from routers import meetings, search
+from routers import meetings, search, knowledge, workflows, analytics, auth
+
+from contextlib import asynccontextmanager
+from database import create_tables
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await create_tables()
+    yield
 
 app = FastAPI(
     title="FireNotes AI API",
     description="Next-generation Meeting Intelligence Platform Backend",
-    version="1.1.0"
+    version="1.1.0",
+    lifespan=lifespan
 )
 
 # Add CORS middleware
@@ -23,8 +32,12 @@ app.add_middleware(
 )
 
 # Include the newly defined routers
+app.include_router(auth.router)
 app.include_router(meetings.router)
 app.include_router(search.router)
+app.include_router(knowledge.router)
+app.include_router(workflows.router)
+app.include_router(analytics.router)
 
 # ------------------------------------------------------------------
 # Phase 1: Mock Pipeline Endpoints (Kept here for backward compatibility)
