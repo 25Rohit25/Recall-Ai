@@ -22,7 +22,8 @@ export function CreateMeetingModal({ isOpen, onClose }: Props) {
     setIsSubmitting(true);
     
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/v1/meetings/', {
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api/v1';
+      const res = await fetch(`${API_BASE}/meetings/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -35,7 +36,7 @@ export function CreateMeetingModal({ isOpen, onClose }: Props) {
       const data = await res.json();
       
       // Auto-generate summary for better demo experience
-      await fetch(`http://127.0.0.1:8000/api/v1/meetings/${data.id}/generate-summary`, {
+      await fetch(`${API_BASE}/meetings/${data.id}/generate-summary`, {
         method: 'POST'
       });
       

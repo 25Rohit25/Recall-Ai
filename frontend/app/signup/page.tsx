@@ -31,7 +31,8 @@ export default function SignupPage() {
       }
       
       try {
-        const res = await fetch('http://localhost:8000/api/v1/auth/signup', {
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
+        const res = await fetch(`${API_BASE}/auth/signup`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name, email, password })
