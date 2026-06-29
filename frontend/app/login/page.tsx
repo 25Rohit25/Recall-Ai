@@ -65,7 +65,7 @@ export default function LoginPage() {
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/25">
               <Sparkles size={20} className="text-white" />
             </div>
-            <span className="text-2xl font-bold tracking-tight text-white">fireflies.ai</span>
+            <span className="text-2xl font-bold tracking-tight text-white">Recall AI</span>
           </Link>
           <h1 className="text-2xl font-bold text-white mb-2">Welcome back</h1>
           <p className="text-sm text-slate-400">Sign in to your account to continue</p>

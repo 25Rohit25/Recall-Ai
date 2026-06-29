@@ -35,7 +35,7 @@ export default function AppsPage() {
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                    <Sparkles className="text-amber-400" size={20} /> AskFireNotes (AskFred)
+                    <Sparkles className="text-amber-400" size={20} /> AskRecall AI
                   </h2>
                   <p className="text-slate-400 text-sm mt-1">Interact with your meetings using conversational AI.</p>
                 </div>

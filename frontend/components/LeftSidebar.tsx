@@ -25,7 +25,7 @@ export function LeftSidebar() {
         <div className="w-8 h-8 flex-shrink-0 rounded bg-[var(--ff-purple)] flex items-center justify-center font-bold text-white shadow-lg shadow-purple-600/20">
           FN
         </div>
-        <span className="font-semibold text-slate-100 tracking-tight text-sm truncate">FireNotes AI</span>
+        <span className="font-semibold text-slate-100 tracking-tight text-sm truncate">Recall AI</span>
       </div>
       
       <div className="flex-1 overflow-y-auto py-4">
@@ -74,7 +74,7 @@ export function LeftSidebar() {
           </div>
           <div className="flex flex-col flex-1 min-w-0">
             <span className="text-sm font-medium text-slate-200 truncate">{user ? user.name : 'Guest'}</span>
-            <span className="text-xs text-slate-500 truncate">{user ? user.email : 'guest@firenotes.ai'}</span>
+            <span className="text-xs text-slate-500 truncate">{user ? user.email : 'guest@recall.ai'}</span>
           </div>
         </div>
       </div>

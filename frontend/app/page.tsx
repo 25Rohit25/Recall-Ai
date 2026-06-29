@@ -130,7 +130,7 @@ export default function LandingPage() {
               <div className="w-3 h-3 rounded-full bg-red-500/60" />
               <div className="w-3 h-3 rounded-full bg-amber-500/60" />
               <div className="w-3 h-3 rounded-full bg-emerald-500/60" />
-              <span className="text-[11px] text-slate-500 ml-3 font-medium">FireNotes AI — Dashboard</span>
+              <span className="text-[11px] text-slate-500 ml-3 font-medium">Recall AI — Dashboard</span>
             </div>
             
             <div className="grid grid-cols-12 min-h-[400px]">
@@ -213,7 +213,7 @@ export default function LandingPage() {
             <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">never forget</span>
           </h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            From transcription to actionable insights — FireNotes handles the entire meeting lifecycle.
+            From transcription to actionable insights — Recall AI handles the entire meeting lifecycle.
           </p>
         </div>
 
@@ -305,7 +305,7 @@ export default function LandingPage() {
                 Ready to transform your meetings?
               </h2>
               <p className="text-base text-slate-400 mb-8 max-w-xl mx-auto leading-relaxed">
-                Join 300,000+ teams who use FireNotes to save time, capture insights, and never miss a detail.
+                Join 300,000+ teams who use Recall AI to save time, capture insights, and never miss a detail.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link href="/signup" className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold hover:from-purple-500 hover:to-pink-500 transition-all shadow-[0_0_30px_rgba(168,85,247,0.3)] flex items-center gap-2 group">
@@ -330,7 +330,7 @@ export default function LandingPage() {
                 <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
                   <Sparkles size={13} className="text-white" />
                 </div>
-                <span className="text-sm font-bold text-white">fireflies.ai</span>
+                <span className="text-sm font-bold text-white">Recall AI</span>
               </div>
               <p className="text-xs text-slate-500 leading-relaxed">AI-powered meeting intelligence for modern teams.</p>
             </div>
@@ -353,7 +353,7 @@ export default function LandingPage() {
             ))}
           </div>
           <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <span className="text-xs text-slate-600">&copy; {new Date().getFullYear()} FireNotes AI. All rights reserved.</span>
+            <span className="text-xs text-slate-600">&copy; {new Date().getFullYear()} Recall AI. All rights reserved.</span>
             <div className="flex items-center gap-4 text-xs text-slate-600">
               <Link href="#" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
               <Link href="#" className="hover:text-slate-400 transition-colors">Terms of Service</Link>

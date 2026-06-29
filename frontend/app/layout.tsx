@@ -8,7 +8,7 @@ import { FirefliesNavbar as GlobalNavbar } from "@/components/GlobalNavbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FireNotes AI — #1 AI Meeting Assistant",
+  title: "Recall AI — #1 AI Meeting Assistant",
   description: "Transcribe, summarize, search, and analyze all your meetings. AI-powered meeting intelligence for teams.",
 };
 

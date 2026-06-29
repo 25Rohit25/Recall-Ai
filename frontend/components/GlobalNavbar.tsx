@@ -120,7 +120,7 @@ export function FirefliesNavbar() {
       <div className="bg-gradient-to-r from-purple-600 to-pink-600 py-2.5 text-center text-sm text-white font-medium">
         <span className="inline-flex items-center gap-2">
           <span className="bg-white/20 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">New</span>
-          FireNotes launches AI Live Assist & Desktop App. 
+          Recall AI launches AI Live Assist & Desktop App. 
           <Link href="/dashboard" className="underline underline-offset-2 hover:no-underline font-semibold">Learn More</Link>
         </span>
       </div>
@@ -134,7 +134,7 @@ export function FirefliesNavbar() {
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/25">
                 <Sparkles size={16} className="text-white" />
               </div>
-              <span className="text-lg font-bold tracking-tight text-white">fireflies.ai</span>
+              <span className="text-lg font-bold tracking-tight text-white">Recall AI</span>
             </Link>
 
             {/* Desktop Nav Links */}
