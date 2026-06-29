@@ -1,0 +1,37 @@
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-v --asyncio-mode=auto"
+testpaths = [
+    "tests",
+]
+
+[tool.black]
+line-length = 120
+target-version = ['py313']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 120
+multi_line_output = 3
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+lint.select = ["E", "F", "W", "I", "C90", "B", "UP"]
+lint.ignore = ["B008", "E501"] # B008 allows Depends() in function signatures, E501 delegates line length to black
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+ignore_missing_imports = true
+plugins = [
+    "pydantic.mypy",
+    "sqlalchemy.ext.mypy.plugin"
+]
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
