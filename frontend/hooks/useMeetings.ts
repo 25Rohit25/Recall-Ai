@@ -50,12 +50,12 @@ export interface MeetingDetailResponse {
   status: MeetingStatus;
   intelligence: Intelligence | null;
   action_items: ActionItem[];
-  transcript_segments: TranscriptSegment[];
+  segments: TranscriptSegment[];
   decisions: Decision[];
 }
 
 // --- API Fetchers ---
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api/v1';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://recall-ai-9vki.onrender.com/api/v1';
 
 async function fetchMeetings(): Promise<MeetingListResponse[]> {
   const res = await fetch(`${API_BASE}/meetings/`);

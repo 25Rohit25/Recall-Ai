@@ -4,16 +4,30 @@ import { LeftSidebar } from '@/components/LeftSidebar';
 import { AudioPlayer } from '@/components/transcript/AudioPlayer';
 import { TranscriptView } from '@/components/TranscriptView';
 import { ActionItemsList } from '@/components/ActionItemsList';
-import { Share2, MoreHorizontal, CalendarClock, Download, Search } from 'lucide-react';
+import { Share2, CalendarClock, Download, Search, Trash2 } from 'lucide-react';
 import { use, useEffect, useState } from 'react';
 import { useUiStore } from '@/store/useUiStore';
 import { AiCopilotPanel } from '@/components/AiCopilotPanel';
+import { useRouter } from 'next/navigation';
 
 export default function MeetingWorkspace({ params }: { params: Promise<{ id: string }> }) {
+  const router = useRouter();
   const resolvedParams = use(params);
   const [activeRightTab, setActiveRightTab] = useState('Summary');
+  const [searchQuery, setSearchQuery] = useState('');
   const { data: meeting, isLoading, isError } = useMeetingDetail(resolvedParams.id);
   const setActiveMeeting = useUiStore((state) => state.setActiveMeeting);
+
+  const handleDelete = async () => {
+    if (!confirm('Are you sure you want to delete this meeting?')) return;
+    try {
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://recall-ai-9vki.onrender.com/api/v1';
+      await fetch(`${API_BASE}/meetings/${resolvedParams.id}`, { method: 'DELETE' });
+      router.push('/dashboard');
+    } catch (e) {
+      console.error('Failed to delete meeting', e);
+    }
+  };
 
   useEffect(() => {
     if (meeting) {
@@ -75,8 +89,8 @@ export default function MeetingWorkspace({ params }: { params: Promise<{ id: str
             <button className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-[var(--ff-surface)] transition-colors">
               <Download size={18} />
             </button>
-            <button className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-[var(--ff-surface)] transition-colors">
-              <MoreHorizontal size={18} />
+            <button onClick={handleDelete} className="p-2 rounded-lg text-rose-400 hover:text-white hover:bg-rose-500/20 transition-colors" title="Delete Meeting">
+              <Trash2 size={18} />
             </button>
           </div>
         </header>
@@ -93,6 +107,8 @@ export default function MeetingWorkspace({ params }: { params: Promise<{ id: str
             <input 
               type="text" 
               placeholder="Search transcript..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-[var(--ff-surface)] border border-slate-800 rounded-lg pl-9 pr-4 py-1.5 text-sm text-white focus:outline-none focus:border-[var(--ff-purple)]"
             />
           </div>
@@ -104,7 +120,7 @@ export default function MeetingWorkspace({ params }: { params: Promise<{ id: str
 
         {/* Transcript Content */}
         <div className="flex-1 overflow-hidden relative">
-          <TranscriptView segments={meeting.transcript_segments} />
+          <TranscriptView segments={(meeting.segments || []).filter(s => s.text.toLowerCase().includes(searchQuery.toLowerCase()))} />
         </div>
       </main>
 

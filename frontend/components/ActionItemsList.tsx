@@ -5,8 +5,29 @@ import { CheckCircle2, Circle } from 'lucide-react';
 
 function ActionItemRow({ item }: { item: ActionItem }) {
   const [completed, setCompleted] = useState(item.status === 'completed');
-  // Mocking priority based on task text for now since it's not in schema
+  const [isUpdating, setIsUpdating] = useState(false);
   const isHigh = item.task.toLowerCase().includes('asap') || item.task.toLowerCase().includes('urgent');
+
+  const toggleComplete = async () => {
+    if (isUpdating) return;
+    setIsUpdating(true);
+    const newStatus = !completed;
+    setCompleted(newStatus);
+    
+    try {
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://recall-ai-9vki.onrender.com/api/v1';
+      await fetch(`${API_BASE}/meetings/action-items/${item.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ is_completed: newStatus })
+      });
+    } catch (e) {
+      console.error(e);
+      setCompleted(!newStatus); // revert on error
+    } finally {
+      setIsUpdating(false);
+    }
+  };
 
   return (
     <div 
@@ -15,7 +36,7 @@ function ActionItemRow({ item }: { item: ActionItem }) {
           ? 'bg-workspace-900/50 border-workspace-border/50 opacity-60' 
           : 'bg-workspace-800/50 border-workspace-border hover:bg-workspace-800 hover:shadow-lg hover:border-slate-500'
       }`}
-      onClick={() => setCompleted(!completed)}
+      onClick={toggleComplete}
     >
       <div className="mt-0.5">
         {completed ? (

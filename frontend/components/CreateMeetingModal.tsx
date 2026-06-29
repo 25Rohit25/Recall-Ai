@@ -22,7 +22,7 @@ export function CreateMeetingModal({ isOpen, onClose }: Props) {
     setIsSubmitting(true);
     
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api/v1';
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://recall-ai-9vki.onrender.com/api/v1';
       const res = await fetch(`${API_BASE}/meetings/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
