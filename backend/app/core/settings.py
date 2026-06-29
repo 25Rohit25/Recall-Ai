@@ -23,7 +23,21 @@ class Settings(BaseSettings):
     
     # CORS
     BACKEND_CORS_ORIGINS: List[str] = ["http://localhost:3000"]
-    
+
+    @validator("BACKEND_CORS_ORIGINS", pre=True)
+    def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[List[str], str]:
+        import json
+        if isinstance(v, str):
+            if v.startswith("[") and v.endswith("]"):
+                # it's a JSON array string
+                try:
+                    return json.loads(v)
+                except Exception:
+                    pass
+            # comma-separated string fallback
+            return [i.strip() for i in v.split(",") if i.strip()]
+        return v
+
     # Database
     DATABASE_URL: str = "sqlite+aiosqlite:///./firenotes.db"
     
