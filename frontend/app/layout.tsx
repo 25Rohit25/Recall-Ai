@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import { CommandPalette } from "@/components/CommandPalette";
-import { FirefliesNavbar as GlobalNavbar } from "@/components/GlobalNavbar";
+import { GlobalNavbar } from "@/components/GlobalNavbar";
 
 const inter = Inter({ subsets: ["latin"] });
 

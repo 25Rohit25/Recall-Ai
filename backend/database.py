@@ -6,7 +6,7 @@ from sqlmodel import Session, create_engine, SQLModel
 from sqlalchemy import text
 
 # Support both async and sync engines depending on the route
-sqlite_url = os.getenv("DATABASE_URL", "sqlite:///firenotes.db")
+sqlite_url = os.getenv("DATABASE_URL", "sqlite:///recall_ai.db")
 async_sqlite_url = sqlite_url.replace("sqlite:///", "sqlite+aiosqlite:///")
 
 async_engine = create_async_engine(async_sqlite_url, echo=False, future=True)
