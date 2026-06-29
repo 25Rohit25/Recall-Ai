@@ -1,50 +1,62 @@
-# FireNotes AI 🚀
+# 🧠 Recall AI
+**The Enterprise Organizational Memory Platform**
 
-An Enterprise Organizational Memory Platform that transforms fragmented meeting conversations into a searchable, relational, and intelligent company-wide Knowledge Graph.
+![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?style=for-the-badge&logo=fastapi)
+![SQLite](https://img.shields.io/badge/SQLite-JSON1-003B57?style=for-the-badge&logo=sqlite)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker)
 
-Built with **Next.js (App Router)**, **Tailwind CSS v4**, **Framer Motion**, **FastAPI**, and **SQLite**.
+Most AI meeting tools just transcribe audio. **Recall AI** builds a searchable, cross-meeting knowledge graph. It connects decisions, risks, and action items across your entire organization, turning isolated syncs into a unified, proactive intelligence platform.
+
+> **Live Demo:** [https://recall-ai-dusky.vercel.app](https://recall-ai-dusky.vercel.app)
+> **API Endpoint:** [https://recall-ai-9vki.onrender.com/docs](https://recall-ai-9vki.onrender.com/docs)
 
 ---
 
-## 📖 Project Overview
+## 🧠 The Architectural Vision
 
-Modern enterprises lose thousands of hours a year trying to track down decisions, tasks, and context from past meetings. FireNotes AI is a proactive Organizational Memory platform that:
+This platform was engineered to solve the "Knowledge Silo" problem in engineering teams. Instead of relying on isolated transcripts, Recall AI utilizes a deterministic backend engine to extract **Entities** (Topics, Decisions, Technologies) and maps them globally.
 
-1. **Ingests** meeting transcripts (text, audio, or real-time simulation).
-2. **Analyzes** conversations using AI to extract Tasks, Decisions, Risks, and Global Knowledge Entities.
-3. **Connects** these entities into a Cross-Meeting Knowledge Graph.
-4. **Empowers** teams with proactive recommendations, automated workflows (Slack/Email/Jira exports), and detailed analytics.
+**Key Engineering Decisions:**
+* **Zero N+1 Query Architecture:** Utilized SQLAlchemy `selectinload` to fetch heavily nested meeting intelligence, transcripts, and action items in a single network trip.
+* **SQLite JSON1 Extension:** Avoided massive relational junction-table bloat by natively storing highly nested AI analytics arrays (Speaker Stats, Health Breakdowns) directly into JSON columns, maintaining millisecond read speeds.
+* **Decoupled State Management:** Abandoned cascading React Contexts in favor of a dual-engine approach: **TanStack Query** for server-state caching and **Zustand** for high-frequency, bidirectional media-to-transcript UI syncing.
 
-## 🏗️ Architecture
+---
+
+## ⚡ Core Features
+
+### 1. The 4-Pane Interactive Workspace
+* **Bidirectional Sync:** Clicking any transcript block instantly seeks the media player to that exact millisecond. As media plays, the transcript auto-scrolls and highlights active speakers using a precision `useRef` architecture.
+* **Transcript Heatmap:** A visual timeline displaying discussion density and argument spikes, allowing executives to jump straight to critical friction points.
+* **Style Decoupling:** Achieved a premium, dark-mode glassmorphism aesthetic (Tailwind v4) entirely decoupled from the underlying React state logic.
+
+### 2. Organizational Knowledge Graph
+* **Cross-Meeting Intelligence:** Search for a technology (e.g., "Redis") and see a timeline of every meeting, decision, and risk associated with it across the entire workspace.
+* **Decision Lifecycle Tracking:** Decisions aren't static. Track a decision from *Proposed* → *Assigned* → *Completed* across multiple different engineering syncs.
+
+### 3. Proactive AI Copilot
+* **Grounded Citations:** When asking the Copilot a question, it doesn't just answer; it returns the exact `[Segment ID]` timestamp as a clickable UI citation to prove its accuracy.
+* **Workflow Generator:** Instantly compile meeting intelligence into copy-pasteable Slack updates, Stakeholder Emails, or Jira ticket formats.
+
+---
+
+## 🏗️ System Architecture
 
 ```mermaid
 graph TD
-    %% Frontend Layer
-    subgraph Frontend [Next.js Client UI]
-        Dashboard[Dashboard & Copilot]
-        Workspaces[Meeting Workspaces]
-        Compare[Meeting Comparison Engine]
-        Profile[Team Profiles]
+    Client[Next.js 16 Client] -->|React Query / Zustand| UI[4-Pane Workspace UI]
+    UI -->|REST / JSON| API[FastAPI Backend]
+    API -->|SQLAlchemy ORM| DB[(SQLite + JSON1)]
+    API -->|Processing Engine| AI[AI Entity Extraction Mock]
+    
+    subgraph Containerization
+    Client
+    API
     end
-
-    %% Backend Layer
-    subgraph Backend [FastAPI Service]
-        API_Meetings[Meetings Router]
-        API_Search[Search Router]
-        API_Knowledge[Knowledge Router]
-        API_Analytics[Analytics Router]
-        API_Workflows[Workflows Router]
-    end
-
-    %% Database Layer
-    subgraph Database [SQLite via SQLModel]
-        DB[(Relational DB + JSON1)]
-    end
-
-    %% Connections
-    Frontend <--> |REST API / JSON| Backend
-    Backend <--> |SQL Alchemy ORM| Database
 ```
+
+---
 
 ## ✨ The 25-Feature Matrix
 
@@ -60,11 +72,11 @@ graph TD
 | **Intelligence** | Thematic Topic Tagging | ✅ |
 | **Intelligence** | Health Score Calculation | ✅ |
 | **Intelligence** | Decision Log Extraction | ✅ |
-| **Knowledge Graph**| Global Knowledge Entity Normalization | ✅ |
-| **Knowledge Graph**| Cross-Meeting Entity Timeline | ✅ |
-| **Knowledge Graph**| Omni-Search Bar (Fuzzy matching) | ✅ |
-| **Knowledge Graph**| Entity "Mentioned In" Linking | ✅ |
-| **Knowledge Graph**| Decision Lifecycle Tracking | ✅ |
+| **Knowledge Graph** | Global Knowledge Entity Normalization | ✅ |
+| **Knowledge Graph** | Cross-Meeting Entity Timeline | ✅ |
+| **Knowledge Graph** | Omni-Search Bar (Fuzzy matching) | ✅ |
+| **Knowledge Graph** | Entity "Mentioned In" Linking | ✅ |
+| **Knowledge Graph** | Decision Lifecycle Tracking | ✅ |
 | **Analytics** | Individual Team Member Profiles | ✅ |
 | **Analytics** | Global Tasks Completed Percentage | ✅ |
 | **Analytics** | Average Talk Time Metrics | ✅ |
@@ -78,15 +90,16 @@ graph TD
 
 ---
 
-## 🚀 Deployment Guide (Production)
+## 🚀 Deployment
 
-This project is fully containerized and orchestrated via Docker Compose.
+### Live Deployment
+| Service | Platform | URL |
+| :--- | :--- | :--- |
+| Frontend | Vercel | [recall-ai-dusky.vercel.app](https://recall-ai-dusky.vercel.app) |
+| Backend | Render | [recall-ai-9vki.onrender.com](https://recall-ai-9vki.onrender.com) |
 
-### Prerequisites
-- Docker & Docker Compose installed.
-
-### 1-Click Startup
-From the root directory, simply run:
+### Local Development (Docker)
+From the root directory:
 ```bash
 docker-compose up -d --build
 ```
@@ -95,19 +108,24 @@ docker-compose up -d --build
 - **Backend API:** http://localhost:8000
 - **API Docs (Swagger):** http://localhost:8000/docs
 
-### Deploying to Cloud Providers (e.g., Render, Railway, AWS)
-1. Ensure your platform supports `docker-compose`.
-2. Connect your GitHub repository to the platform.
-3. The included `docker-compose.yml` configures everything needed:
-   - A private Docker bridge network.
-   - A persistent volume mapped to `backend_data` for the SQLite DB.
-   - An ordered startup sequence (`frontend` waits for `backend`).
+### Manual Local Setup
+```bash
+# Backend
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload
+
+# Frontend
+cd frontend
+npm install
+npm run dev
+```
 
 ---
 
 ## 🔮 Future Roadmap & Scaling Strategy
 
-As FireNotes AI scales to support millions of meetings, the following architectural upgrades are recommended:
+As Recall AI scales to support millions of meetings, the following architectural upgrades are recommended:
 
 1. **Vector Database Integration:** Replace fuzzy SQL `LIKE` queries with a dedicated Vector DB (Pinecone, Qdrant) for true semantic search across meeting transcripts.
 2. **Asynchronous Task Queues:** Implement Celery & Redis to offload heavy LLM transcription and entity extraction tasks from the main FastAPI thread.
